@@ -18,7 +18,22 @@ on:
     - cron: '0 22 * * *' 
      
     
-  workflow_dispatch:    
+  workflow_dispatch:
+    inputs:
+      mavenProfile:
+        description: 'maven profile - select your choice'
+        options:
+          - 'web'
+          - 'android'
+          - 'ios'
+          - 'unit-test'
+        required: true
+        default: 'web'
+        type: choice
+      remoteURL:
+        description: 'selenoid url if hosted outside'
+        required: true
+        default: 'http://localhost:4444/wd/hub'  
 
 jobs:
   build:
